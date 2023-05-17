@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:cinemapedia/presentation/providers/movies/movies_providers.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,12 +13,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title      : const Text('Peliculas populares', style: TextStyle(fontSize: 26.0, fontStyle: FontStyle.italic),),
-        centerTitle: false,
-      ),
-      body  : const _HomeView(),
+    return const Scaffold(
+      body  : _HomeView(),
     );
   }
 }
@@ -43,16 +40,13 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     final nowPlayingMovies = ref.watch( nowPlayingMoviesProvider );
 
-    return ListView.builder(
-      itemCount  : nowPlayingMovies.length,
-      itemBuilder: (context, index) {
+    return Column(
+      children: [
 
-        final movie = nowPlayingMovies[index];
+        const CustomAppBar(),
 
-        return ListTile(
-          title: Text( movie.title ),
-        );
-      },
+        MoviesslideShow( movies: nowPlayingMovies ),
+      ],
     );
 
   }
