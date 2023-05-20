@@ -1,4 +1,5 @@
 import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/infrastructure/models/moviedb/movie_details.dart';
 import 'package:cinemapedia/infrastructure/models/moviedb/movie_moviedb.dart';
 
 class MovieMapper {
@@ -18,6 +19,23 @@ class MovieMapper {
       video           : moviedb.video,
       voteAverage     : moviedb.voteAverage,
       voteCount       : moviedb.voteCount
+  );
+
+  static Movie movieDetailsToEntity( MovieDetails moviedb) => Movie(
+    id              : moviedb.id,
+    adult           : moviedb.adult,
+    backdropPath    : getImagePath(moviedb.backdropPath),
+    genreIds        : moviedb.genres.map((e) => e.name ).toList(),
+    originalLanguage: moviedb.originalLanguage,
+    originalTitle   : moviedb.originalTitle,
+    overview        : moviedb.overview,
+    popularity      : moviedb.popularity,
+    posterPath      : getImagePath(moviedb.posterPath),
+    releaseDate     : moviedb.releaseDate,
+    title           : moviedb.title,
+    video           : moviedb.video,
+    voteAverage     : moviedb.voteAverage,
+    voteCount       : moviedb.voteCount
   );
 
   static String getImagePath( String imagePath ) {
