@@ -9,7 +9,7 @@ import 'package:cinemapedia/infrastructure/models/moviedb/credits_response.dart'
 class ActorDbDataSource extends ActorsDataSource {
 
   final dio = Dio( BaseOptions(
-    baseUrl: 'https://api.themoviedb.org/3',
+    baseUrl        : 'https://api.themoviedb.org/3',
     queryParameters: {
       'api_key' : Environment.movieDBKey,
       'language': 'es-MX'
