@@ -70,7 +70,7 @@ class MoviedbDataSource extends MovieDataSource {
 
     final Movie movie = MovieMapper.movieDetailsToEntity( movieDetailDB );
 
-    throw movie;
+    return movie;
   }
 
 }

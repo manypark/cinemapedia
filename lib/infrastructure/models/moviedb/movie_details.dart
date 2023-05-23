@@ -7,7 +7,7 @@ class MovieDetails {
     final List<Genre> genres;
     final String homepage;
     final int id;
-    final String imdbId;
+    final String? imdbId;
     final String originalLanguage;
     final String originalTitle;
     final String overview;
@@ -28,13 +28,13 @@ class MovieDetails {
 
     MovieDetails({
         this.belongsToCollection,
+        this.imdbId,
         required this.adult,
         required this.backdropPath,
         required this.budget,
         required this.genres,
         required this.homepage,
         required this.id,
-        required this.imdbId,
         required this.originalLanguage,
         required this.originalTitle,
         required this.overview,
@@ -62,7 +62,7 @@ class MovieDetails {
         genres: List<Genre>.from(json["genres"].map((x) => Genre.fromMap(x))),
         homepage: json["homepage"],
         id: json["id"],
-        imdbId: json["imdb_id"],
+        imdbId: json["imdb_id"] ?? '',
         originalLanguage: json["original_language"],
         originalTitle: json["original_title"],
         overview: json["overview"],
