@@ -7,7 +7,6 @@ import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
 import 'package:cinemapedia/infrastructure/models/moviedb/movie_details.dart';
 import 'package:cinemapedia/infrastructure/models/moviedb/moviedb_response.dart';
 
-
 class MoviedbDataSource extends MovieDataSource {
 
   final dio = Dio( BaseOptions(
