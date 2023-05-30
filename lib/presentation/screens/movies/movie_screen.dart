@@ -75,11 +75,14 @@ class _MovideDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child       : Image.network(
-                  movie.posterPath,
-                  width: size.width * 0.3,
+              Hero(
+                tag: movie,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child       : Image.network(
+                    movie.posterPath,
+                    width: size.width * 0.3,
+                  ),
                 ),
               ),
 
