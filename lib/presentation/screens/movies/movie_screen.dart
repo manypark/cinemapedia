@@ -151,8 +151,10 @@ class _ActorsByMovie extends ConsumerWidget {
     return SizedBox(
       height: 300.0,
       child : ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
+        itemCount       : actors.length,
+        scrollDirection : Axis.horizontal,
+        itemBuilder     : (context, index) {
+
         final actor = actors[index];
 
         return Container(
@@ -203,6 +205,15 @@ class _CustomSliverAppBar extends StatelessWidget {
       backgroundColor : Colors.black,
       expandedHeight  : size.height * 0.7,
       foregroundColor : Colors.white,
+      actions         : [
+        IconButton(
+          onPressed: () {
+
+          },
+          icon: const Icon( Icons.favorite_border )
+          // icon: const Icon( Icons.favorite_rounded, color: Colors.red , )
+        ),
+      ],
       flexibleSpace    : FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric( horizontal: 10.0, vertical: 5.0 ),
         // title       : Text( movie.title, style: const TextStyle( fontSize: 20.0 ),),
@@ -220,39 +231,68 @@ class _CustomSliverAppBar extends StatelessWidget {
               ),
             ),
 
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin : Alignment.topCenter,
-                    end   : Alignment.bottomCenter,
-                    stops: [ 0.7, 1.0 ],
-                    colors: [
-                      Colors.transparent,
-                      Colors.black54,
-                    ]
-                  )
-                )
-              ),
+            const _CustomGradient(
+              begin : Alignment.topCenter,
+              end   : Alignment.bottomCenter,
+              stops : [ 0.7, 1.0 ],
+              colors: [
+                Colors.transparent,
+                Colors.black12,
+              ],
             ),
 
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin : Alignment.topLeft,
-                    stops: [ 0.0, 0.2 ],
-                    colors: [
-                      Colors.black54,
-                      Colors.transparent,
-                    ]
-                  )
-                )
-              ),
+            const _CustomGradient(
+              begin : Alignment.topRight,
+              end   : Alignment.bottomLeft,
+              stops: [ 0.0, 0.2 ],
+              colors: [
+                Colors.black54,
+                Colors.transparent,
+              ],
             ),
+            const _CustomGradient(
+              begin : Alignment.topLeft,
+              stops: [ 0.0, 0.2 ],
+              colors: [
+                Colors.black54,
+                Colors.transparent,
+              ],
+            ),
+
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CustomGradient extends StatelessWidget {
+
+  final AlignmentGeometry begin;
+  final AlignmentGeometry? end;
+  final List<double>? stops;
+  final List<Color> colors;
+
+  const _CustomGradient({
+    this.stops, 
+    this.end,
+    required this.begin, 
+    required this.colors,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin : begin,
+            end   : end ?? Alignment.centerRight,
+            stops : stops,
+            colors: colors
+          )
+        )
+      )
     );
   }
 }
