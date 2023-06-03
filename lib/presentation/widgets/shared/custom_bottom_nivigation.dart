@@ -3,7 +3,12 @@ import 'package:go_router/go_router.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
 
-  const CustomBottomNavigation({super.key});
+  final int currentIndex;
+
+  const CustomBottomNavigation({
+    super.key,
+    required this.currentIndex
+  });
 
   int getCurrentIndex( BuildContext context ) {
 
@@ -44,10 +49,11 @@ class CustomBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      elevation: 0.0,
-      currentIndex: getCurrentIndex( context ),
-      onTap    : (value) => onItemTapped( context, value ),
-      items    : const [
+      elevation   : 0.0,
+      currentIndex: currentIndex,
+      // onTap       : (value) => onItemTapped( context, value ),
+      onTap       : (index) => context.go('/home/$index'),
+      items       : const [
 
         BottomNavigationBarItem(
           icon  : Icon( Icons.home_max ),
@@ -65,3 +71,20 @@ class CustomBottomNavigation extends StatelessWidget {
     );
   }
 }
+
+// void onItemTapped( BuildContext context, int index ) {
+  
+//   switch ( index ) {
+
+//     case 0:
+//       context.go('/home/0');
+//     break;
+//     case 1:
+//       context.go('/home/1');
+//     break;
+//     case 2:
+//       context.go('/home/2');
+//     break;
+
+//   }
+// }
