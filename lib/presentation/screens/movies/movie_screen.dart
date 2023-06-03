@@ -214,8 +214,8 @@ class _CustomSliverAppBar extends ConsumerWidget {
       foregroundColor : Colors.white,
       actions         : [
         IconButton(
-          onPressed: () {
-            ref.watch( localStorageRepositoryProvider ).toggleFavorite(movie);
+          onPressed: () async {
+            await ref.read( favoriteMoviesProvider.notifier ).toggleFavorite(movie);
             ref.invalidate( isFavoriteProvider( movie.id ) );
           },
           icon: isFavoriteFuture.when(
@@ -223,13 +223,10 @@ class _CustomSliverAppBar extends ConsumerWidget {
             data   : (data) => data ? const Icon( Icons.favorite_rounded, color: Colors.red , ) : const Icon( Icons.favorite_border ),
             error  : (_, __) => throw UnimplementedError(),
           ),
-          // icon: const Icon( Icons.favorite_border )
-          // icon: const Icon( Icons.favorite_rounded, color: Colors.red , )
         ),
       ],
       flexibleSpace    : FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric( horizontal: 10.0, vertical: 5.0 ),
-        // title       : Text( movie.title, style: const TextStyle( fontSize: 20.0 ),),
         background  : Stack(
           children: [
 
