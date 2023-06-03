@@ -1,7 +1,5 @@
 import 'package:go_router/go_router.dart';
-
 import 'package:cinemapedia/presentation/screens/screens.dart';
-import 'package:cinemapedia/presentation/views/home_views/views.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/home/0',
@@ -28,22 +26,11 @@ final appRouter = GoRouter(
       ]
     ),
 
+    GoRoute(
+      path    : '/',
+      redirect: (context, state) => '/home/0',
+    ),
+
     
   ]
 );
-
-// GoRoute(
-//   path   : '/', 
-//   name   : HomeScreen.name, 
-//   builder: (context, state) => const HomeScreen( childView: HomeView() ),
-//   routes : [
-//     GoRoute(
-//       path   : 'movie/:id', 
-//       name   : MovieScreen.name, 
-//       builder: (context, state) {
-//         final movieId = state.pathParameters['id'] ?? 'no-id';
-//         return MovieScreen( movieId: movieId );
-//       }
-//     ),
-//   ]
-// ),
